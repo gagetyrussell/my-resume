@@ -29,7 +29,7 @@ const routes = [
       {
         component: () =>
           React.createElement(
-            require('C:/Users/Owner/Documents/GitHub/umi-examples/with-nav-and-sidebar/node_modules/umi-build-dev/lib/plugins/404/NotFound.js')
+            require('/home/gage.russell/clones/my-resume/node_modules/umi-build-dev/lib/plugins/404/NotFound.js')
               .default,
             { pagesPath: 'pages', hasRoutesInConfig: false },
           ),
@@ -39,7 +39,7 @@ const routes = [
   {
     component: () =>
       React.createElement(
-        require('C:/Users/Owner/Documents/GitHub/umi-examples/with-nav-and-sidebar/node_modules/umi-build-dev/lib/plugins/404/NotFound.js')
+        require('/home/gage.russell/clones/my-resume/node_modules/umi-build-dev/lib/plugins/404/NotFound.js')
           .default,
         { pagesPath: 'pages', hasRoutesInConfig: false },
       ),
