@@ -2,6 +2,7 @@ import router from 'umi/router';
 import React from 'react';
 import { Button, Timeline, Breadcrumb  } from 'antd';
 import Plot from 'react-plotly.js';
+import styles from './resume.less';
 
 const today = new Date()
 const current_date = today.toISOString();

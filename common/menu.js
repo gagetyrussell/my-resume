@@ -69,6 +69,17 @@ const menuData = [
       },
     ],
   },
+  {
+    name: 'Application Downloads',
+    icon: 'download',
+    path: 'downloads',
+    children: [
+      {
+        name: 'Pivot-Reporter',
+        path: 'pivotReporter',
+      },
+    ],
+  },
 ];
 
 function formatter(data, parentPath = '/', parentAuthority) {
