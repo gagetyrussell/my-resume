@@ -85,7 +85,7 @@ class Overview extends React.Component {
       )
     })
     return (
-      <div>
+      <div className={styles.contentDiv}>
         <h1>Overview</h1>
         <Plot
           data={traces}
