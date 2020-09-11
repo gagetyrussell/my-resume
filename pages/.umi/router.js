@@ -27,6 +27,11 @@ const routes = [
         component: require('../resume/overview.js').default,
       },
       {
+        path: '/tools/pivotReporter',
+        exact: true,
+        component: require('../tools/pivotReporter.js').default,
+      },
+      {
         component: () =>
           React.createElement(
             require('C:/Users/Owner/Documents/GitHub/my-resume/node_modules/umi-build-dev/lib/plugins/404/NotFound.js')

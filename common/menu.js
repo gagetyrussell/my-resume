@@ -70,6 +70,17 @@ const menuData = [
     ],
   },
   {
+    name: 'Tools',
+    icon: 'tool',
+    path: 'tools',
+    children: [
+      {
+        name: 'Pivot-Reporter',
+        path: 'pivotReporter',
+      },
+    ],
+  },
+  {
     name: 'Application Downloads',
     icon: 'download',
     path: 'downloads',
