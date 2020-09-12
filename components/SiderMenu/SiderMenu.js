@@ -213,7 +213,7 @@ export default class SiderMenu extends PureComponent {
         className={styles.sider}
       >
         <div className={styles.logo} key="logo">
-          <Link to="/resume/overview/">
+          <Link to="/">
             <h1>Gage Russell</h1>
           </Link>
         </div>
