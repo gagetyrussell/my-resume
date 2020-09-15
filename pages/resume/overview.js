@@ -57,7 +57,6 @@ const skill_data = [
   {"skill": "python", "start": "2015-01-01", "end": "current", "proficiency": "Expert"},
   {"skill": "R", "start": "2017-01-01", "end": "current", "proficiency": "Advanced"},
   {"skill": "MATLAB", "start": "2015-01-01", "end": "current", "proficiency": "Advanced"},
-  {"skill": "Mathematica", "start": "2014-01-01", "end": "2015-01-01", "proficiency": "Intermediate"},
   {"skill": "SQL", "start": "2017-01-01", "end": "current", "proficiency": "Advanced"},
   {"skill": "NoSQL", "start": "2019-01-01", "end": "current", "proficiency": "Advanced"},
   {"skill": "ReactJS", "start": "2019-01-01", "end": "current", "proficiency": "Intermediate"},
