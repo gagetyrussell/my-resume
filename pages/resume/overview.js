@@ -3,7 +3,7 @@ import React from 'react';
 import { Button, Timeline, Breadcrumb  } from 'antd';
 import Plot from 'react-plotly.js';
 import styles from './resume.less';
-import OverViewTimeline from '../../components/overViewTimeline/index.js';
+import OverViewTimeline from '../../components/OverViewTimeline/index.js';
 
 
 const today = new Date()
