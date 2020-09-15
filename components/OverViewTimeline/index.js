@@ -69,6 +69,7 @@ class OverViewTimeline extends React.Component {
     let midDate = new Date((minDate.getTime() + maxDate.getTime()) / 2);
     // sort by start date
     work_data.sort((a, b) => b.start - a.start)
+    skill_data.sort((a, b) => b.start - a.start)
 
     let companies = work_data.map((d) => {
       return (
