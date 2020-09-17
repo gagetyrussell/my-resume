@@ -22,6 +22,11 @@ const routes = [
         component: require('../index.js').default,
       },
       {
+        path: '/Login',
+        exact: true,
+        component: require('../Login.js').default,
+      },
+      {
         path: '/resume/overview',
         exact: true,
         component: require('../resume/overview.js').default,

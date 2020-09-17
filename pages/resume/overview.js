@@ -74,7 +74,19 @@ const award_data = [
   {"color": "#CBC500", "award": "Dean's Honor Roll", "organization": "University of Oklahoma", "date": '2018-06-30'},
 ]
 
-const colors = ['#636EFA', '#EF553B', '#00CC96', '#AB63FA', '#FFA15A', '#19D3F3', '#FF6692', '#B603A5', '#FF97FF', '#FECB52', '#2DA005']
+const certification_data = [
+  {"certification": "Advanced Certified Tutor, Level II", "organization": "CLRA", "date": '2016-03-01'},
+]
+
+const prof_dev_data = [
+  {"training": "Shell Petroleum Engineering Camp", "organization": "Sehll Exploration & Production Company", "completion_date": '2017-03-17'},
+  {"training": "REACH Orientation", "organization": "International Paper", "completion_date": '2018-08-10'},
+  {"training": "Six Sigma White Belt Training", "organization": "International Paper", "completion_date": '2018-09-01'},
+  {"training": "Six Sigma Yellow Belt Training", "organization": "International Paper", "completion_date": '2019-10-01'},
+  {"training": "AWS Technical Essentials", "organization": "ExitCertified", "completion_date": '2020-03-01'},
+  {"training": "Fundamentals of Hydrocarbon Measurement", "organization": "EUCI", "completion_date": '2019-05-25'},
+]
+
 
 class Overview extends React.Component {
   render() {
@@ -97,6 +109,8 @@ class Overview extends React.Component {
             work_data = {work_data}
             skill_data = {skill_data}
             award_data = {award_data}
+            certification_data = {certification_data}
+            prof_dev_data = {prof_dev_data}
             category_color_map = {category_color_map}
           />
         </div>

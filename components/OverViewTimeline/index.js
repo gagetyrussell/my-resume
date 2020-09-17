@@ -39,6 +39,8 @@ class OverViewTimeline extends React.Component {
     let work_data = this.props.work_data
     let skill_data = this.props.skill_data
     let award_data = this.props.award_data
+    let certification_data = this.props.certification_data
+    let prof_dev_data = this.props.prof_dev_data
     // replace "current" with now
     work_data.map((d) => {
         d.end = d.end.toString().replace('current', current_date);
@@ -155,7 +157,11 @@ class OverViewTimeline extends React.Component {
     // define skill traces
     let skill_traces = skill_data.map((d, i) => {
       // determine if legend already exists
-      let showlegend_bool = false
+      if (i==1) {
+        showlegend_bool = false
+      } else {
+        showlegend_bool = false
+      }
 
       let startDate = moment(d.start);
       let endDate = moment(d.end);
@@ -200,8 +206,8 @@ class OverViewTimeline extends React.Component {
           type: 'line',
           mode: 'lines+text',
           hoverinfo: "x+text",
-          legendgroup: d.skill,
-          name: d.skill,
+          legendgroup: "skills",
+          name: "skills",
           showlegend: showlegend_bool,
           line: {
             color: "black",
@@ -251,7 +257,84 @@ class OverViewTimeline extends React.Component {
 
     traces.push(award_trace)
 
-    console.log(traces)
+    // define certification traces
+    let cert_dates = []
+    let cert_hovertext = []
+    let cert_iterator = []
+    certification_data.map((d,i) => {
+      cert_dates.push(d.date)
+      cert_hovertext.push("<b>Organization:</b> " + " " + d.organization + "<br> <b>Certification:</b> " +  d.certification)
+      cert_iterator.push(1)
+    })
+
+    let cert_trace = {
+      x: cert_dates,
+      y: cert_iterator,
+      hovertext: cert_hovertext,
+      xaxis: "x1",
+      yaxis: "y4",
+      textfont: {
+        size: 12,
+      },
+      type: 'scatter',
+      mode: 'markers',
+      marker: {
+        symbol: "diamond-x",
+        color: "rgba(0,0,0,0)",
+        size: 12,
+        line: {
+          color: "black",
+          width: 2
+        }
+      },
+      hoverinfo: "x+text",
+      legendgroup: "certifcations",
+      name: "certifcations",
+      showlegend: true,
+    }
+
+    traces.push(cert_trace)
+
+    // define certification traces
+    let pd_dates = []
+    let pd_hovertext = []
+    let pd_iterator = []
+    prof_dev_data.map((d,i) => {
+      pd_dates.push(d.completion_date)
+      pd_hovertext.push("<b>Organization:</b> " + " " + d.organization + "<br> <b>Training:</b> " +  d.training)
+      pd_iterator.push(1)
+    })
+
+    let pd_trace = {
+      x: pd_dates,
+      y: pd_iterator,
+      hovertext: pd_hovertext,
+      xaxis: "x1",
+      yaxis: "y4",
+      textfont: {
+        size: 12,
+      },
+      type: 'scatter',
+      mode: 'markers',
+      marker: {
+        symbol: "bowtie",
+        color: "rgba(0,0,0,0)",
+        size: 12,
+        line: {
+          color: "black",
+          width: 1
+        }
+      },
+      hoverinfo: "x+text",
+      legendgroup: "professional_development",
+      name: "professional-development",
+      showlegend: true,
+    }
+    console.log(prof_dev_data)
+    console.log(pd_dates)
+    console.log(pd_trace)
+    traces.push(pd_trace)
+
 
     return (
       <Plot className={styles.mainChart}
@@ -284,7 +367,7 @@ class OverViewTimeline extends React.Component {
               showticklabels: false,
               showgrid: false,
               zeroline: false,
-              domain: [0.4, 1],
+              domain: [0.7, 1],
               title: "Experience",
               titlefont: {
                 size: 16
@@ -297,7 +380,7 @@ class OverViewTimeline extends React.Component {
               showticklabels: false,
               showgrid: false,
               zeroline: false,
-              domain: [0.15, 0.35],
+              domain: [0.4, 0.6],
               title: 'Skills',
               titlefont: {
                 size: 16
@@ -310,13 +393,26 @@ class OverViewTimeline extends React.Component {
               showticklabels: false,
               showgrid: false,
               zeroline: false,
-              domain: [0, 0.1],
+              domain: [0.2, 0.3],
               title: 'Awards',
               titlefont: {
                 size: 16
               },
               side: "left"
-            }
+            },
+            yaxis4: {
+              showlines: false,
+              showticks: false,
+              showticklabels: false,
+              showgrid: false,
+              zeroline: false,
+              domain: [0, 0.1],
+              title: 'Professional<br>Development',
+              titlefont: {
+                size: 16
+              },
+              side: "left"
+            },
           }
         }
         config={

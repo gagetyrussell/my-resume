@@ -18,6 +18,13 @@ class BasicLayout extends Component {
   handleMenuCollapse = () => {
     this.setState({
       collapsed: !this.state.collapsed,
+      isauth: false,
+      currentUser: {
+        name: '',
+        avatar: 'https://gw.alipayobjects.com/zos/rmsportal/qpwiqTwLLqaSmMKFZDYx.png',
+        userid: '',
+        notifycount: 1
+      }
     });
   };
 
@@ -36,14 +43,10 @@ class BasicLayout extends Component {
         <Layout>
           <Header style={{ padding: 0 }}>
             <GlobalHeader
+              isauth={this.state.isauth}
               logo={logo}
               collapsed={collapsed}
-              currentUser={{
-                name: 'Serati Ma',
-                avatar: 'https://gw.alipayobjects.com/zos/rmsportal/BiazfanxmamNRoxxVxka.png',
-                userid: '00000001',
-                notifyCount: 12,
-              }}
+              currentUser={this.state.currentUser}
               onCollapse={this.handleMenuCollapse}
             />
           </Header>
