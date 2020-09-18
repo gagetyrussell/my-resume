@@ -21,6 +21,7 @@
     "react-plotly.js": "^2.4.0",
     "read-excel-file": "^4.0.7",
     "umi": "^2.1.1",
-    "umi-plugin-react": "^1.0.0-beta.17"
+    "umi-plugin-react": "^1.0.0-beta.17",
+    "xlsx": "^0.16.7"
   }
 }
