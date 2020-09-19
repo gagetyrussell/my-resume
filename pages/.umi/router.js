@@ -32,6 +32,11 @@ const routes = [
         component: require('../tools/pivotReporter.js').default,
       },
       {
+        path: '/tools/viewer',
+        exact: true,
+        component: require('../tools/viewer.js').default,
+      },
+      {
         component: () =>
           React.createElement(
             require('C:/Users/Owner/Documents/GitHub/my-resume/node_modules/umi-build-dev/lib/plugins/404/NotFound.js')

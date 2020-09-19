@@ -3,20 +3,19 @@ import XLSX from 'xlsx';
 import { Upload, message } from 'antd';
 import { LoadingOutlined, PlusOutlined } from '@ant-design/icons';
 import DataInput from '../../components/DataInput/index.js';
-import PivotTableUI from 'react-pivottable/PivotTableUI';
-import 'react-pivottable/pivottable.css';
-import TableRenderers from 'react-pivottable/TableRenderers';
+import PlotlyEditor from 'react-chart-editor';
+import 'react-chart-editor/lib/react-chart-editor.css';
 import Plot from 'react-plotly.js';
-import createPlotlyRenderers from 'react-pivottable/PlotlyRenderers';
-import styles from './pivotReporter.less';
+import plotly from 'plotly.js/dist/plotly';
+import styles from './viewer.less';
 
-const PlotlyRenderers = createPlotlyRenderers(Plot);
+const config = {editable: true};
 
-class PivotReporter extends React.Component {
+class Viewer extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      data: [] /* Array of Arrays e.g. [["a","b"],[1,2]] */,
+      datasource: [] /* Array of Arrays e.g. [["a","b"],[1,2]] */,
     };
     this.handleFile = this.handleFile.bind(this);
   }
@@ -36,31 +35,37 @@ class PivotReporter extends React.Component {
       const headers = data.shift();
       const result = data.map(function(row) {
           var jsonRow = {};
+          console.log(row)
           row.forEach(function(cellValue, cellIndex) {
               jsonRow[headers[cellIndex]] = cellValue;
           });
           return jsonRow;
       });
       /* Update state */
-      this.setState({ data: result });
+      this.setState({ datasource: result });
     };
     if (rABS) reader.readAsBinaryString(info.file.originFileObj);
     else reader.readAsArrayBuffer(info.file.originFileObj);
   }
 
   render() {
+    console.log(this.state.datasource)
     return (
       <div>
         <div>
           <DataInput handleFile={this.handleFile} action={window.location.href}/>
         </div>
-        <div className={styles.pivotTable}>
-          <PivotTableUI
-              data={this.state.data}
-              cols={[]}
-              rows={[]}
-              onChange={s => this.setState(s)}
-              renderers={Object.assign({}, TableRenderers, PlotlyRenderers)}
+        <div>
+          <PlotlyEditor
+            dataSources={this.state.datasource}
+            layout={this.state.layout}
+            config={config}
+            frames={this.state.frames}
+            plotly={plotly}
+            onUpdate={(data, layout, frames) => this.setState({data, layout, frames})}
+            useResizeHandler
+            debug
+            advancedTraceTypeSelector
           />
         </div>
       </div>
@@ -68,4 +73,4 @@ class PivotReporter extends React.Component {
   }
 }
 
-export default PivotReporter;
+export default Viewer;

@@ -78,6 +78,10 @@ const menuData = [
         name: 'Pivot-Reporter',
         path: 'pivotReporter',
       },
+      {
+        name: 'Viewer',
+        path: 'viewer',
+      },
     ],
   },
   {

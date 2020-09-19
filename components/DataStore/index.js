@@ -44,10 +44,9 @@ class DataInput extends React.Component {
   }
 
   onChange(info) {
-    console.log(info.file.status)
     if (info.file.status !== 'uploading') {
        let file = info.file.originFileObj;
-       if (file) this.props.handleFile(info);
+       if (file) this.props.handleFile(file);
     }
     if (info.file.status === 'done') {
       message.success(`${info.file.name} file parsed successfully`);
@@ -71,7 +70,6 @@ class DataInput extends React.Component {
         multiple={false}
         onChange={this.onChange}
         className="avatar-uploader"
-        action={this.props.action}
         progress={progress}>
         <Tooltip title="Your data is not uploaded anywhere, just parsed and stored in the browser session.">
           <Button icon={<UploadOutlined />}>Click to Select Data for Analysis</Button>
