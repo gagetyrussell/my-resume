@@ -1,5 +1,5 @@
 import { Component } from 'react';
-import { Layout, Icon, message } from 'antd';
+import { Layout, message } from 'antd';
 import SiderMenu from "../components/SiderMenu/SiderMenu";
 import { getMenuData } from '../common/menu';
 import logo from '../assets/logo.svg';

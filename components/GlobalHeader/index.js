@@ -1,5 +1,7 @@
 import React, { PureComponent } from 'react';
-import { Menu, Icon, Spin, Tag, Dropdown, Avatar, Divider, Tooltip } from 'antd';
+import { CloseCircleOutlined, LogoutOutlined, SettingOutlined, UserOutlined } from '@ant-design/icons';
+import { Icon as LegacyIcon } from '@ant-design/compatible';
+import { Menu, Spin, Tag, Dropdown, Avatar, Divider, Tooltip } from 'antd';
 import moment from 'moment';
 import groupBy from 'lodash/groupBy';
 import Debounce from 'lodash-decorators/debounce';
@@ -69,17 +71,17 @@ export default class GlobalHeader extends PureComponent {
     const menu = (
       <Menu className={styles.menu} selectedKeys={[]} onClick={onMenuClick}>
         <Menu.Item disabled>
-          <Icon type="user" />个人中心
+          <UserOutlined />个人中心
         </Menu.Item>
         <Menu.Item disabled>
-          <Icon type="setting" />设置
+          <SettingOutlined />设置
         </Menu.Item>
         <Menu.Item key="triggerError">
-          <Icon type="close-circle" />触发报错
+          <CloseCircleOutlined />触发报错
         </Menu.Item>
         <Menu.Divider />
         <Menu.Item key="logout">
-          <Icon type="logout" />退出登录
+          <LogoutOutlined />退出登录
         </Menu.Item>
       </Menu>
     );
@@ -92,7 +94,7 @@ export default class GlobalHeader extends PureComponent {
           </Link>,
           <Divider type="vertical" key="line" />,
         ]}
-        <Icon
+        <LegacyIcon
           className={styles.trigger}
           type={collapsed ? 'menu-unfold' : 'menu-fold'}
           onClick={this.toggle}

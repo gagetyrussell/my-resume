@@ -1,5 +1,6 @@
 import React, { PureComponent } from 'react';
-import { Popover, Icon, Tabs, Badge, Spin } from 'antd';
+import { BellOutlined } from '@ant-design/icons';
+import { Popover, Tabs, Badge, Spin } from 'antd';
 import classNames from 'classnames';
 import List from './NoticeList';
 import styles from './index.less';
@@ -73,7 +74,7 @@ export default class NoticeIcon extends PureComponent {
     const trigger = (
       <span className={noticeButtonClass}>
         <Badge count={count} className={styles.badge}>
-          <Icon type="bell" className={styles.icon} />
+          <BellOutlined className={styles.icon} />
         </Badge>
       </span>
     );
