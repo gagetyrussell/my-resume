@@ -27,14 +27,14 @@ const routes = [
         component: require('../resume/overview.js').default,
       },
       {
+        path: '/tools/chartEditor',
+        exact: true,
+        component: require('../tools/chartEditor.js').default,
+      },
+      {
         path: '/tools/pivotReporter',
         exact: true,
         component: require('../tools/pivotReporter.js').default,
-      },
-      {
-        path: '/tools/viewer',
-        exact: true,
-        component: require('../tools/viewer.js').default,
       },
       {
         component: () =>

@@ -1,31 +1,30 @@
 import router from 'umi/router';
 import React from 'react';
-import { Typography } from 'antd';
+import { Typography, message } from 'antd';
 import * as Papa from 'papaparse';
 import styles from './pivotReporter.less';
 import FileTable from '../../components/FileTable/index.js';
-import PivotTableUI from 'react-pivottable/PivotTableUI';
-import 'react-pivottable/pivottable.css';
-import TableRenderers from 'react-pivottable/TableRenderers';
-import Plot from 'react-plotly.js';
-import createPlotlyRenderers from 'react-pivottable/PlotlyRenderers';
-
-const PlotlyRenderers = createPlotlyRenderers(Plot);
+import plotly from 'plotly.js/dist/plotly';
+import PlotlyEditor from 'react-chart-editor';
+import 'react-chart-editor/lib/react-chart-editor.css';
 
 const acceptMimes = ["text/csv", "application/vnd.ms-excel"]
 
-class pivotReporter extends React.Component {
+const config = {editable: true};
+
+class chartEditor extends React.Component {
   constructor() {
     super();
     this.state = {
       csvfile: undefined,
       filelist: [],
       datafields: [],
-      datasource: [],
+      dataSources: [],
       data: [],
+      dataSourceOptions: [],
+      layout: {},
+      frames: [],
       filedata: [],
-      rows: [],
-      cols: []
     };
     this.updateData = this.updateData.bind(this);
     this.handleFile = this.handleFile.bind(this);
@@ -89,8 +88,29 @@ class pivotReporter extends React.Component {
     this.setState({ datasource })
   };
 
-  updatePivotData(data) {
-    this.setState({data: data, rows: [], cols: []})
+  updatePivotData(data, name) {
+    let dataSources = {};
+    data.map((d) => {
+      Object.entries(d).map((e) => {
+        if (!(e[0] in dataSources)) {
+          dataSources[e[0]] = []
+        }
+        dataSources[e[0]] = [...dataSources[e[0]], e[1]]
+      })
+    });
+    let dataSourceOptions = Object.keys(dataSources).map(name => ({
+      value: name,
+      label: name,
+    }));
+    this.setState({
+      dataSources: dataSources,
+      dataSourceOptions: dataSourceOptions,
+      layout: {},
+      data: [],
+      frames: []
+    }, () => {
+      message.success(`${name} successfully loaded into Editor. Add a Trace!`);
+    })
   };
 
   render() {
@@ -119,8 +139,8 @@ class pivotReporter extends React.Component {
         dataIndex: '',
         key: 'x',
         render: (record) => (
-          <a href="javascript:;" onClick={() => this.updatePivotData(record.innerdata)} style={{ marginRight: 8 }}>
-            Load Pivot
+          <a href="javascript:;" onClick={() => this.updatePivotData(record.innerdata, record.filename)} style={{ marginRight: 8 }}>
+            Load Editor
           </a>
         )
       },
@@ -134,11 +154,20 @@ class pivotReporter extends React.Component {
           outercolumns={outercolumns}
         />
         <div className={styles.contentDiv}>
-          <PivotTableUI
-              data={this.state.data}
-              onChange={s => this.setState(s)}
-              renderers={Object.assign({}, TableRenderers, PlotlyRenderers)}
-              {...this.state}
+          <PlotlyEditor
+            data={this.state.data}
+            layout={this.state.layout}
+            config={config}
+            frames={this.state.frames}
+            dataSources={this.state.dataSources}
+            dataSourceOptions={this.state.dataSourceOptions}
+            plotly={plotly}
+            onUpdate={(data, layout, frames) =>
+              this.setState({data, layout, frames})
+            }
+            useResizeHandler
+            debug
+            advancedTraceTypeSelector
           />
         </div>
       </div>
@@ -147,4 +176,4 @@ class pivotReporter extends React.Component {
 }
 
 
-export default pivotReporter;
+export default chartEditor;
