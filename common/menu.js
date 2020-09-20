@@ -75,8 +75,12 @@ const menuData = [
     path: 'tools',
     children: [
       {
-        name: 'Pivot-Reporter',
+        name: 'Simple-Pivot-Reporter',
         path: 'pivotReporter',
+      },
+      {
+        name: 'Managed-Pivot-Reporter',
+        path: 'viewer',
       },
     ],
   },
