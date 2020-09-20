@@ -1,5 +1,6 @@
 import React, { PureComponent } from 'react';
-import { Layout, Menu, Icon } from 'antd';
+import { Icon as LegacyIcon } from '@ant-design/compatible';
+import { Layout, Menu } from 'antd';
 import pathToRegexp from 'path-to-regexp';
 import Link from 'umi/link';
 import styles from './index.less';
@@ -17,7 +18,7 @@ const getIcon = icon => {
     return <img src={icon} alt="icon" className={`${styles.icon} sider-menu-item-img`} />;
   }
   if (typeof icon === 'string') {
-    return <Icon type={icon} />;
+    return <LegacyIcon type={icon} />;
   }
   return icon;
 };
