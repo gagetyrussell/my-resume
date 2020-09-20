@@ -1,6 +1,6 @@
 import router from 'umi/router';
 import React from 'react';
-import { Typography, Upload, Tooltip, Button, message  } from 'antd';
+import { Typography, Upload, Tooltip, Button, message } from 'antd';
 import { DownloadOutlined, UploadOutlined, InboxOutlined, PlusOutlined   } from '@ant-design/icons';
 import * as Papa from 'papaparse';
 import styles from './viewer.less';
@@ -163,6 +163,12 @@ class viewer extends React.Component {
       format: percent => `${parseFloat(percent.toFixed(2))}%`,
     }
 
+    let dummyRequest = ({ file, onSuccess }) => {
+      setTimeout(() => {
+        onSuccess("ok");
+      }, 0);
+    };
+
     return (
       <div>
         <Upload
@@ -171,7 +177,7 @@ class viewer extends React.Component {
           beforeUpload={this.beforeUpload}
           accept=".csv"
           className="avatar-uploader"
-          action={window.location.href}
+          customRequest={dummyRequest}
           progress={progress}>
           <Tooltip title="Your data is not uploaded anywhere, just parsed and stored in the browser session.">
             <Button icon={<UploadOutlined />}>Click to Select Data for Analysis</Button>
